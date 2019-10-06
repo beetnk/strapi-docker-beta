@@ -15,7 +15,6 @@ RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories 
     git \
     make
     
-RUN mkdir /usr/src/api
 WORKDIR /usr/src/api
 
 RUN echo "unsafe-perm = true" >> ~/.npmrc
