@@ -1,14 +1,21 @@
-FROM node:11.1.0-alpine
+FROM node:12.11.0-alpine
 
-LABEL maintainer="Luca Perret <perret.luca@gmail.com>" \
-      org.label-schema.vendor="Strapi" \
-      org.label-schema.name="Strapi Docker image" \
-      org.label-schema.description="Strapi containerized" \
-      org.label-schema.url="https://strapi.io" \
-      org.label-schema.vcs-url="https://github.com/strapi/strapi-docker" \
-      org.label-schema.version=latest \
-      org.label-schema.schema-version="1.0"
-
+RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && apk update && \
+    apk add --no-cache bash \
+    openssh-client \
+    wget \
+    curl \
+    bc \
+    gcc \
+    python \
+    python-dev \
+    py-pip \
+    openssl-dev \
+    ca-certificates \
+    git \
+    make
+    
+RUN mkdir /usr/src/api
 WORKDIR /usr/src/api
 
 RUN echo "unsafe-perm = true" >> ~/.npmrc
